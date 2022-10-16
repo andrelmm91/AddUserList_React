@@ -40,11 +40,14 @@ function AddUser(props) {
   function userAgeChangeHandler(event) {
     setEnteredUserAge(event.target.value);
   }
+  function errorHandler(event) {
+    setError(null);
+  }
 
-// rendering the errorModal by looking at the error, if exists, this line of code will be added. otherwise, not.
+  // rendering the errorModal by looking at the error, if exists, this line of code will be added. otherwise, not.
   return (
     <div>
-      {error && <ErrorModal title={error.title} message={error.message} />}
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">User Name</label>
