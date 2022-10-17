@@ -3,6 +3,7 @@ import Button from "../UI/Button"; // custom Button
 import Card from "../UI/Card";
 import ErrorModal from "../UI/ErrorModal";
 import classes from "./AddUser.module.css";
+import Wrappers from "../helpers/Wrappers";
 
 function AddUser(props) {
   const [enteredUserName, setEnteredUsername] = useState("");
@@ -46,8 +47,14 @@ function AddUser(props) {
 
   // rendering the errorModal by looking at the error, if exists, this line of code will be added. otherwise, not.
   return (
-    <div>
-      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
+    <Wrappers>
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">User Name</label>
@@ -67,7 +74,7 @@ function AddUser(props) {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </Wrappers>
   );
 }
 

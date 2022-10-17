@@ -1,14 +1,14 @@
 import React from "react";
+import Wrappers from "../helpers/Wrappers";
 import Button from "./Button";
 import Card from "./Card";
 import classes from "./ErrorModal.module.css";
 
-
 // there are two onClick, one if clicking outside the box and another clicking on the button.
 function ErrorModal(props) {
   return (
-    <div>
-      <div className={classes.backdrop} onClick={props.onConfirm}/>
+    <Wrappers>
+      <div className={classes.backdrop} onClick={props.onConfirm} />
       <Card className={classes.modal}>
         <header className={classes.header}>
           <h2>{props.title}</h2>
@@ -20,7 +20,7 @@ function ErrorModal(props) {
           <Button onClick={props.onConfirm}>Okay</Button>
         </footer>
       </Card>
-    </div>
+    </Wrappers>
   );
 }
 
