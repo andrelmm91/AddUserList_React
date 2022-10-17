@@ -6,9 +6,11 @@ import classes from "./AddUser.module.css";
 import Wrappers from "../helpers/Wrappers";
 
 function AddUser(props) {
+  //useRef gets the value of the DOM and save in a variable. We can edit, store and modify the DOM directly. >> Primarily to quick read a value.
   const nameInputRef = useRef();
   const ageInputRef = useRef();
 
+  // useState can store and modify the values and create handlers to set new ones.
   // const [enteredUserName, setEnteredUsername] = useState("");
   // const [enteredUserAge, setEnteredUserAge] = useState("");
   const [error, setError] = useState();
