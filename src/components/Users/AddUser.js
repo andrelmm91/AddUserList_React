@@ -5,12 +5,14 @@ import ErrorModal from "../UI/ErrorModal";
 import classes from "./AddUser.module.css";
 import Wrappers from "../helpers/Wrappers";
 
+// useStates generates a controlled state because we use the Data and setData to feedback the DOM by suing React.
+// ref fetches the DOM state and generates an uncontrolled state because we the Data and manipulate it without React.
 function AddUser(props) {
   //useRef gets the value of the DOM and save in a variable. We can edit, store and modify the DOM directly. >> Primarily to quick read a value.
   const nameInputRef = useRef();
   const ageInputRef = useRef();
 
-  // useState can store and modify the values and create handlers to set new ones.
+  // useState can store and modify the values and create handlers to set new ones. 
   // const [enteredUserName, setEnteredUsername] = useState("");
   // const [enteredUserAge, setEnteredUserAge] = useState("");
   const [error, setError] = useState();
@@ -36,8 +38,8 @@ function AddUser(props) {
       return;
     }
     props.onAddUser(enteredName, enteredAge);
-    nameInputRef.current.value = ''; // to reset the state after submitting, we can use the DOM directly.
-    ageInputRef.current.value = '';
+    nameInputRef.current.value = ""; // to reset the state after submitting, we can use the DOM directly.
+    ageInputRef.current.value = "";
 
     // console.log(enteredUserName, enteredUserAge);
     // setEnteredUserAge("");
