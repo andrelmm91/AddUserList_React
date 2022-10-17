@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import Button from "./Button";
 import Card from "./Card";
 import classes from "./ErrorModal.module.css";
@@ -8,7 +8,7 @@ import classes from "./ErrorModal.module.css";
 function Backdrop(props) {
   return <div className={classes.backdrop} onClick={props.onConfirm} />;
 }
-// adding portal here to the HTML root
+// adding portal here to the HTML root. It sounds confusing re-rooting a props from the props coming from <Backdrop /> into this function. tip: keep the same name of the calling props inside the portal as render inside the function.
 function ModalOverlay(props) {
   return (
     <Card className={classes.modal}>
@@ -28,9 +28,17 @@ function ModalOverlay(props) {
 function ErrorModal(props) {
   return (
     <React.Fragment>
-      {ReactDOM.createPorta(
-        <Backdrop onConfirm={props.onConfirm} />, 
-        document.getElementById("backdrp-root")
+      {ReactDOM.createPortal(
+        <Backdrop onConfirm={props.onConfirm} />,
+        document.getElementById("backdrop-root")
+      )}
+      {ReactDOM.createPortal(
+        <ModalOverlay
+          title={props.title}
+          message={props.message}
+          onConfirm={props.onConfirm}
+        />,
+        document.getElementById("overlay-root")
       )}
     </React.Fragment>
   );
